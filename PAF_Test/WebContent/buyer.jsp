@@ -1,55 +1,7 @@
-<%
-	// initialize
-	session.setAttribute("statusMsg", "");
-	System.out.println("getting into process");
-
-	//save
-	if (request.getParameter("fname") != null) 
-	
-	{
-		Buyer Obj = new Buyer();
-		String stsMsg = "";
-
-		//insert 
-		if (request.getParameter("hidbIdSave") == "") {
-			stsMsg = Obj.insertBuyers(request.getParameter("fname"),
-					request.getParameter("lname"),
-					request.getParameter("pnumber"),
-					request.getParameter("email"),
-					request.getParameter("password"));
-		} else
-
-		//update
-		{
-			stsMsg = Obj.updateBuyers(request.getParameter("hidbIdSave"),
-					request.getParameter("fname"),
-					request.getParameter("lname"),
-					request.getParameter("pnumber"),
-					request.getParameter("email"),
-					request.getParameter("password"));
-
-		}
-
-		session.setAttribute("statusMsg", stsMsg);
-	}
-
-	// Delete
-
-	if (request.getParameter("hidbIddelete") != null) {
-		Buyer Obj = new Buyer();
-
-		String stsMsg = Obj.deleteBuyers(request.getParameter("hidbIddelete"));
-		session.setAttribute("statusMsg", stsMsg);
-	}
-%>
-
-
-
+<%@page import="com.Buyer"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
- 
-<%@page import="com.Buyer"%>
 
 <!DOCTYPE html>
 <html>
@@ -88,20 +40,18 @@
 					<input type="hidden" id="hidbIdSave" name="hidbIdSave" value="">
 				</form>
 
-				<div id="alertSuccess" class="alert alert-success">
-					<%
-						out.println(session.getAttribute("statusMsg"));
-					%>
-				</div>
-
+				<div id="alertSuccess" class="alert alert-success">	</div>
 				<div id="alertError" class="alert alert-danger"></div>
 
 				<br>
+				<div id="divBuyersGrid">
 
 				<%
 					Buyer Obj = new Buyer();
 					out.println(Obj.readBuyers());
 				%>
+				
+				</div>>
 			</div>
 		</div>
 	</div>

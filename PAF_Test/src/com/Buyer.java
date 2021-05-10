@@ -84,18 +84,15 @@ public class Buyer { // A common method to connect to the DB
 				 String password = rs.getString("password");
 			
 				// Add into the html table 
-				 output += "<tr><td><input id='hidbIdUpdate' name= 'hidbIdUpdate' type='hidden' value='"+bId+"'>" + fname + "</td>";
+				 output += "<tr><td>" + fname + "</td>";
 				 output += "<td>" + lname + "</td>";
 				 output += "<td>" + pnumber + "</td>";
 				 output += "<td>" + email + "</td>";
 				 output += "<td>" + password + "</td>";
 				
 				// buttons  
-				 output += "<td><input id='btnUpdate' name='btnUpdate' type='button' value='Update' class='btn btn-secondary'></td>"
-						 + "<td><form method='post' action='buyer.jsp'>"
-						 + "<input id='btnRemove' name='btnRemove' type='submit' value='Remove' class='btn btn-danger'>"
-						 + "<input name='hidbIddelete' type='hidden' value='" + bId
-						 + "'>" + "</form></td></tr>";
+				 output += "<td><input id='btnUpdate' name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary' data-buyerid='" + bId + "'> </td>"
+						 + "<input id='btnRemove' name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-buyerid='" + bId + "'></td></tr>";
 			}
 			con.close();
 			// Complete the html table
