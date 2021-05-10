@@ -44,9 +44,13 @@ public class Buyer { // A common method to connect to the DB
 			// execute the statement3
 			preparedStmt.execute();
 			con.close();
-			output = "Inserted successfully";
+			
+			String newBuyers = readBuyers(); 
+			
+			output = "{\"status\":\"success\", \"data\": \"" + newBuyers + "\"}"; 
+			
 		} catch (Exception e) {
-			output = "Error while inserting the  buyer.";
+			output = "{\"status\":\"error\", \"data\": \"Error while inserting the buyer.\"}";
 			System.err.println(e.getMessage());
 		}
 		return output;
@@ -76,7 +80,7 @@ public class Buyer { // A common method to connect to the DB
 			
 			// iterate through the rows in the result set
 			while (rs.next()) {
-				String bId = Integer.toString(rs.getInt("bId"));
+				 String bId = Integer.toString(rs.getInt("bId"));
 				 String fname = rs.getString("fname");
 				 String lname = rs.getString("lname");
 				 String pnumber =rs.getString("pnumber");
@@ -126,9 +130,13 @@ public class Buyer { // A common method to connect to the DB
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
-			output = "Updated successfully";
+			
+			
+			String newBuyers = readBuyers();
+			output = "{\"status\":\"success\", \"data\": \"" + newBuyers + "\"}";
+			
 		} catch (Exception e) {
-			output = "Error while updating the buyer.";
+			output = "{\"status\":\"error\", \"data\": \"Error while updating the buyer.\"}"; 
 			System.err.println(e.getMessage());
 		}
 		return output;
@@ -152,9 +160,12 @@ public class Buyer { // A common method to connect to the DB
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
-			output = "Deleted successfully";
+			
+			String newBuyers = readBuyers();
+			output = "{\"status\":\"success\", \"data\": \"" + newBuyers + "\"}";
+			
 		} catch (Exception e) {
-			output = "Error while deleting the buyer.";
+			output = "{\"status\":\"error\", \"data\": \"Error while deleting the buyer.\"}";
 			System.err.println(e.getMessage());
 		}
 		return output;
